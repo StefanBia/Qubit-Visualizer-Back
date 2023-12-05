@@ -6,6 +6,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "workbench")
 public class WorkBench implements Serializable {
 
     @Id
@@ -14,8 +15,6 @@ public class WorkBench implements Serializable {
     private long WorkBenchId;
 
 
-    @ManyToOne
-    private User user;
-    @OneToOne
-    private BlochSphere blochSphere;
+
+
 }
