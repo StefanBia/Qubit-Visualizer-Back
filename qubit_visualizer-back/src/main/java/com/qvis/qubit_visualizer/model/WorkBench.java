@@ -13,6 +13,8 @@ public class WorkBench implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false,updatable = false)
     private long WorkBenchId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private User user;
 
 
 
