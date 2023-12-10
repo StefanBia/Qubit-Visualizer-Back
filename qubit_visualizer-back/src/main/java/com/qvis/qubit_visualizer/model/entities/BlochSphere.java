@@ -1,4 +1,4 @@
-package com.qvis.qubit_visualizer.model;
+package com.qvis.qubit_visualizer.model.entities;
 
 import jakarta.persistence.*;
 

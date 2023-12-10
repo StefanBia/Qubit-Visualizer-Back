@@ -1,7 +1,6 @@
-package com.qvis.qubit_visualizer.model;
+package com.qvis.qubit_visualizer.model.entities;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 
 public abstract class DefaultGate implements Gate, Serializable {
 

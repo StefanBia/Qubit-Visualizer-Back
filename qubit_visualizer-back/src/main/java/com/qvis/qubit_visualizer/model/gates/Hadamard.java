@@ -1,6 +1,6 @@
 package com.qvis.qubit_visualizer.model.gates;
 
-import com.qvis.qubit_visualizer.model.DefaultGate;
+import com.qvis.qubit_visualizer.model.entities.DefaultGate;
 
 public class Hadamard extends DefaultGate {
 }

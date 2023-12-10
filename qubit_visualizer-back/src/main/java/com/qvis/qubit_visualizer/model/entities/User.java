@@ -1,4 +1,4 @@
-package com.qvis.qubit_visualizer.model;
+package com.qvis.qubit_visualizer.model.entities;
 
 import jakarta.persistence.*;
 
@@ -62,5 +62,9 @@ public class User implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public long getUserId() {
+        return userId;
     }
 }
