@@ -19,7 +19,6 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(nullable = false,updatable = false)
     private long userId;
-
     private String username;
 
     private String firstName;

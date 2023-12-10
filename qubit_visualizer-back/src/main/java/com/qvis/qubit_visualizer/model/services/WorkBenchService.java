@@ -43,6 +43,7 @@ public class WorkBenchService {
    public WorkBench updateWorkBench(WorkBench workBench, Long id){
         WorkBench newWorkBench = this.findWorkBenchById(id);
         newWorkBench.setUser(workBench.getUser());
+        newWorkBench.setBlochSpheres(workBench.getBlochSpheres());
         return newWorkBench;
    }
 }

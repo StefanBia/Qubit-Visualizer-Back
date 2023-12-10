@@ -4,6 +4,7 @@ import com.qvis.qubit_visualizer.model.entities.User;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "workbench")
@@ -15,6 +16,8 @@ public class WorkBench implements Serializable {
     private long workBenchId;
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<BlochSphere> blochSpheres;
 
     public WorkBench(User user) {
         this.user = user;
@@ -34,5 +37,16 @@ public class WorkBench implements Serializable {
 
     public User getUser() {
         return user;
+    }
+
+    public List<BlochSphere> getBlochSpheres() {
+        return blochSpheres;
+    }
+
+    public void setBlochSpheres(List<BlochSphere> blochSpheres) {
+        this.blochSpheres = blochSpheres;
+    }
+    public void addBlochSphere(BlochSphere blochSphere){
+        this.blochSpheres.add(blochSphere);
     }
 }

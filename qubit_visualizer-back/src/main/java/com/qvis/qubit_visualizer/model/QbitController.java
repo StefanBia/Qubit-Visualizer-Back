@@ -1,7 +1,9 @@
 package com.qvis.qubit_visualizer.model;
 
+import com.qvis.qubit_visualizer.model.entities.BlochSphere;
 import com.qvis.qubit_visualizer.model.entities.User;
 import com.qvis.qubit_visualizer.model.entities.WorkBench;
+import com.qvis.qubit_visualizer.model.services.BlochSphereService;
 import com.qvis.qubit_visualizer.model.services.UserService;
 import com.qvis.qubit_visualizer.model.services.WorkBenchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +18,13 @@ import java.util.List;
 public class QbitController {
     private final UserService userService;
     private final WorkBenchService workBenchService;
+    private final BlochSphereService blochSphereService;
 
     @Autowired
-    public QbitController(UserService userService, WorkBenchService workBenchService) {
+    public QbitController(UserService userService, WorkBenchService workBenchService, BlochSphereService blochSphereService) {
         this.userService = userService;
         this.workBenchService = workBenchService;
+        this.blochSphereService = blochSphereService;
     }
     @GetMapping("/all/user")
     public ResponseEntity<List<User>> getUsers()
@@ -78,5 +82,19 @@ public class QbitController {
     public ResponseEntity<WorkBench> updateWorkBench(@PathVariable("id") Long id, @RequestBody WorkBench workBench){
         WorkBench newWorkBench =  workBenchService.updateWorkBench(workBench,id);
         return new ResponseEntity<>(newWorkBench,HttpStatus.OK);
+    }
+
+    @GetMapping("/all/blochsphere")
+    public ResponseEntity<List<BlochSphere>> getBlochSpheres(){
+        List<BlochSphere> blochSpheres = this.blochSphereService.getAllBlochSpheres();
+        return new ResponseEntity<>(blochSpheres,HttpStatus.OK);
+    }
+
+    @PostMapping("add/blochsphere/{id}")
+    public ResponseEntity<BlochSphere> addBlochSphere(@PathVariable("id") Long id, @RequestBody BlochSphere blochSphere){
+        BlochSphere newBlochSphere = this.blochSphereService.addBlochSphere(blochSphere);
+        WorkBench workBench = this.workBenchService.findWorkBenchById(id);
+        workBench.addBlochSphere(newBlochSphere);
+        return new ResponseEntity<>(newBlochSphere,HttpStatus.OK);
     }
 }
