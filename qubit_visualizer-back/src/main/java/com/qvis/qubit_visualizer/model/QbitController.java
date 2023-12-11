@@ -93,8 +93,29 @@ public class QbitController {
     @PostMapping("add/blochsphere/{id}")
     public ResponseEntity<BlochSphere> addBlochSphere(@PathVariable("id") Long id, @RequestBody BlochSphere blochSphere){
         BlochSphere newBlochSphere = this.blochSphereService.addBlochSphere(blochSphere);
+
+        // Find the WorkBench by ID
         WorkBench workBench = this.workBenchService.findWorkBenchById(id);
+
+        // Add the new BlochSphere to the WorkBench
         workBench.addBlochSphere(newBlochSphere);
+
+        // Save the changes to the database
+        this.workBenchService.addWorkBench(workBench, workBench.getUser());
+
         return new ResponseEntity<>(newBlochSphere,HttpStatus.OK);
     }
+
+    @DeleteMapping("/delete/blochsphere/{id}")
+    public ResponseEntity<?> deleteBlochSphere(@PathVariable Long id){
+        this.blochSphereService.deleteBlochSphereById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/update/blochsphere/{id}")
+    public ResponseEntity<BlochSphere> updateBlochSphere(@PathVariable Long id, @RequestBody BlochSphere blochSphere){
+        BlochSphere newBlochSphere = this.blochSphereService.updateBlochSphere(blochSphere,id);
+        return new ResponseEntity<>(newBlochSphere,HttpStatus.OK);
+    }
+
 }

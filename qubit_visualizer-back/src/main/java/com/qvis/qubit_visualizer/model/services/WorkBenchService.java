@@ -44,6 +44,7 @@ public class WorkBenchService {
         WorkBench newWorkBench = this.findWorkBenchById(id);
         newWorkBench.setUser(workBench.getUser());
         newWorkBench.setBlochSpheres(workBench.getBlochSpheres());
-        return newWorkBench;
+         return workBenchRepo.save(newWorkBench);
+
    }
 }

@@ -39,6 +39,7 @@ public class BlochSphereService {
         newBlochSphere.setLenX(blochSphere.getLenX());
         newBlochSphere.setLenY(blochSphere.getLenY());
         newBlochSphere.setLenZ(blochSphere.getLenZ());
-        return newBlochSphere;
+        return blochSphereRepo.save(newBlochSphere);
+
     }
 }
