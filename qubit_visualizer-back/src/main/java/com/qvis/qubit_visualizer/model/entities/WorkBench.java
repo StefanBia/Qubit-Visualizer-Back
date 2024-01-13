@@ -22,6 +22,8 @@ public class WorkBench implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<BlochSphere> blochSpheres = new HashSet<BlochSphere>();
 
+    private String selectedGate;
+
     public WorkBench(User user) {
         this.user = user;
     }
@@ -51,5 +53,13 @@ public class WorkBench implements Serializable {
     }
     public void addBlochSphere(BlochSphere blochSphere){
         this.blochSpheres.add(blochSphere);
+    }
+
+    public String getSelectedGate() {
+        return selectedGate;
+    }
+
+    public void setSelectedGate(String selectedGate) {
+        this.selectedGate = selectedGate;
     }
 }
