@@ -36,10 +36,14 @@ private final UserRepo userRepo;
     }
 
     public User findUserByUserId(Long id){
-        return userRepo.findUserByUserId(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        return userRepo.findUserByUserId(id).orElseThrow(() -> new EntityNotFoundException("User not found!"));
     }
     public void deleteUser(Long id){
         User user = this.findUserByUserId(id);
         deleteUser(user);
+    }
+
+    public User findUserByUsername(String username){
+        return userRepo.findUserByUsername(username).orElseThrow(() -> new EntityNotFoundException("User not found!"));
     }
 }

@@ -17,32 +17,23 @@ public class WorkBench implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false,updatable = false)
     private long workBenchId;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private User user;
     @OneToMany(cascade = CascadeType.ALL)
     private Set<BlochSphere> blochSpheres = new HashSet<BlochSphere>();
 
+    @Column
     private String selectedGate;
 
-    public WorkBench(User user) {
-        this.user = user;
-    }
 
     public WorkBench() {
 
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public long getWorkBenchId() {
         return workBenchId;
     }
 
-    public User getUser() {
-        return user;
-    }
+
 
     public Set<BlochSphere> getBlochSpheres() {
         return blochSpheres;

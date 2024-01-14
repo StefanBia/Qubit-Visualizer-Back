@@ -1,8 +1,11 @@
 package com.qvis.qubit_visualizer.model.controllers;
 
+import com.qvis.qubit_visualizer.model.AuthCredentialsRequest;
+import com.qvis.qubit_visualizer.model.LoginResponse;
 import com.qvis.qubit_visualizer.model.entities.BlochSphere;
 import com.qvis.qubit_visualizer.model.entities.User;
 import com.qvis.qubit_visualizer.model.entities.WorkBench;
+import com.qvis.qubit_visualizer.model.exceptions.BadCredentialsException;
 import com.qvis.qubit_visualizer.model.services.BlochSphereService;
 import com.qvis.qubit_visualizer.model.services.UserService;
 import com.qvis.qubit_visualizer.model.services.WorkBenchService;
@@ -11,10 +14,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("http://localhost:3000")
 public class UserController {
     private final UserService userService;
     private final WorkBenchService workBenchService;
@@ -57,6 +62,29 @@ public class UserController {
         User newUser = userService.updateUser(id,user);
         return new ResponseEntity<>(newUser, HttpStatus.ACCEPTED);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody AuthCredentialsRequest request) {
+        User user = userService.findUserByUsername(request.getUsername());
+        LoginResponse response = new LoginResponse();
+
+        try {
+            if (request.getPassword().equals(user.getPassword())) {
+                response.setStatus(HttpStatus.ACCEPTED);
+                Iterator<WorkBench> iterator = user.getWorkBenches().iterator();
+                WorkBench workBench = iterator.next();
+                response.setSelectedGate(workBench.getSelectedGate()); // Replace with the actual value
+            } else {
+                throw new BadCredentialsException("Incorrect password!");
+            }
+        } catch (Exception e) {
+            response.setStatus(HttpStatus.UNAUTHORIZED);
+        }
+
+        return new ResponseEntity<>(response, response.getStatus());
+    }
+
+
 
 
 

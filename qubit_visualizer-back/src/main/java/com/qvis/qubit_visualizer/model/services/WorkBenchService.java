@@ -22,8 +22,7 @@ public class WorkBenchService {
         return workBenches;
     }
 
-   public WorkBench addWorkBench(WorkBench workBench, User user){
-        workBench.setUser(user);
+   public WorkBench addWorkBench(WorkBench workBench){
         return workBenchRepo.save(workBench);
    }
 
@@ -42,7 +41,6 @@ public class WorkBenchService {
 
    public WorkBench updateWorkBench(WorkBench workBench, Long id){
         WorkBench newWorkBench = this.findWorkBenchById(id);
-        newWorkBench.setUser(workBench.getUser());
         newWorkBench.setBlochSpheres(workBench.getBlochSpheres());
          return workBenchRepo.save(newWorkBench);
 

@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/workbench")
+@CrossOrigin("http://localhost:3000")
 public class WorkBenchController {
     private final UserService userService;
     private final WorkBenchService workBenchService;
@@ -35,7 +36,9 @@ public class WorkBenchController {
     @PostMapping("/add/{id}")
     public ResponseEntity<WorkBench> addWorkBench(@PathVariable("id") Long id, @RequestBody WorkBench workBench){
         User user = userService.findUserByUserId(id);
-        WorkBench newWorkBench = workBenchService.addWorkBench(workBench, user);
+        WorkBench newWorkBench = workBenchService.addWorkBench(workBench);
+        user.addWorkBench(newWorkBench);
+        userService.updateUser(user.getUserId(),user);
         return new ResponseEntity<>(newWorkBench,HttpStatus.CREATED);
 
     }

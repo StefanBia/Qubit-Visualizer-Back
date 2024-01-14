@@ -1,9 +1,12 @@
 package com.qvis.qubit_visualizer.model.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.jdbc.Work;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user_qub")
@@ -24,8 +27,10 @@ public class User implements Serializable {
     private String firstName;
 
     private String lastName;
-//    @OneToMany
-//    private List<WorkBench> workBenches;
+
+    private String password;
+    @OneToMany
+    private Set<WorkBench> workBenches = new HashSet<WorkBench>();
 
 
     public User(){
@@ -61,6 +66,26 @@ public class User implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<WorkBench> getWorkBenches() {
+        return workBenches;
+    }
+
+    public void setWorkBenches(Set<WorkBench> workBenches) {
+        this.workBenches = workBenches;
+    }
+
+    public void addWorkBench(WorkBench workBench){
+        this.workBenches.add(workBench);
     }
 
     public long getUserId() {

@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/blochsphere")
+@CrossOrigin("http://localhost:3000")
 public class BlochSphereController {
 
     private final UserService userService;
@@ -44,7 +45,7 @@ public class BlochSphereController {
         workBench.addBlochSphere(newBlochSphere);
 
         // Save the changes to the database
-        this.workBenchService.addWorkBench(workBench, workBench.getUser());
+        this.workBenchService.addWorkBench(workBench);
 
         return new ResponseEntity<>(newBlochSphere,HttpStatus.OK);
     }
