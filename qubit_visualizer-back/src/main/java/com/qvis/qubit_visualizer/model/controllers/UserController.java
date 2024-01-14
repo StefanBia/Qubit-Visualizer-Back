@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/user")
@@ -66,26 +67,30 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody AuthCredentialsRequest request) {
         User user = userService.findUserByUsername(request.getUsername());
+        System.out.println(user.getPassword());
         LoginResponse response = new LoginResponse();
 
         try {
-            if (request.getPassword().equals(user.getPassword())) {
+            if (user != null && request.getPassword().equals(user.getPassword())) {
                 response.setStatus(HttpStatus.ACCEPTED);
-                Iterator<WorkBench> iterator = user.getWorkBenches().iterator();
-                WorkBench workBench = iterator.next();
-                response.setSelectedGate(workBench.getSelectedGate()); // Replace with the actual value
+
+                Set<WorkBench> workBenches = user.getWorkBenches();
+                if (workBenches != null && !workBenches.isEmpty()) {
+                    Iterator<WorkBench> iterator = workBenches.iterator();
+                    WorkBench workBench = iterator.next();
+                    response.setSelectedGate(workBench.getSelectedGate());
+                } else {
+                    response.setSelectedGate("Pauli-X"); // Provide a default value if workBenches is null or empty
+                }
             } else {
                 throw new BadCredentialsException("Incorrect password!");
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             response.setStatus(HttpStatus.UNAUTHORIZED);
         }
 
         return new ResponseEntity<>(response, response.getStatus());
     }
-
-
-
-
 
 }
