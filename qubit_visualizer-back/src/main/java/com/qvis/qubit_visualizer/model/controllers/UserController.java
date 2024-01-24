@@ -1,8 +1,7 @@
 package com.qvis.qubit_visualizer.model.controllers;
 
-import com.qvis.qubit_visualizer.model.AuthCredentialsRequest;
-import com.qvis.qubit_visualizer.model.LoginResponse;
-import com.qvis.qubit_visualizer.model.entities.BlochSphere;
+import com.qvis.qubit_visualizer.model.login.AuthCredentialsRequest;
+import com.qvis.qubit_visualizer.model.login.LoginResponse;
 import com.qvis.qubit_visualizer.model.entities.User;
 import com.qvis.qubit_visualizer.model.entities.WorkBench;
 import com.qvis.qubit_visualizer.model.exceptions.BadCredentialsException;

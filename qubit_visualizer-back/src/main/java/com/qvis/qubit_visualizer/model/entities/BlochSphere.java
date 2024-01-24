@@ -10,7 +10,7 @@ public class BlochSphere implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private long blochSphereId;
+    private long blochSphereId;//Generate ID automatically
     private double lenX;
     private double lenY;
     private double lenZ;

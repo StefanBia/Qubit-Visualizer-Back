@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface WorkBenchRepo extends JpaRepository<WorkBench, Long> {
-    Optional<WorkBench> findWorkBenchByWorkBenchId(Long id);
+    Optional<WorkBench> findWorkBenchByWorkBenchId(Long id);//Create JPA query for finding Workbench by ID
 }

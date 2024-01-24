@@ -1,4 +1,4 @@
-package com.qvis.qubit_visualizer.model;
+package com.qvis.qubit_visualizer.model.login;
 
 public class AuthCredentialsRequest {
     private String username;

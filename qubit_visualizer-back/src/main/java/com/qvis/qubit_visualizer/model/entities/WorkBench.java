@@ -16,7 +16,7 @@ public class WorkBench implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false,updatable = false)
-    private long workBenchId;
+    private long workBenchId;//Generate ID automatically
     @OneToMany(cascade = CascadeType.ALL)
     private Set<BlochSphere> blochSpheres = new HashSet<BlochSphere>();
 

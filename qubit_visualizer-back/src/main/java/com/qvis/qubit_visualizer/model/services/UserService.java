@@ -15,11 +15,11 @@ private final UserRepo userRepo;
 @Autowired
     public UserService(UserRepo userRepo) {
         this.userRepo = userRepo;
-    }
+    }//Create instance of User Repository inside User Service
 
     public List<User> getUsers(){
         return userRepo.findAll();
-    }
+    }//Get a list of all users
 
     public User addUser(User user){
         return userRepo.save(user);
@@ -27,7 +27,7 @@ private final UserRepo userRepo;
     public void deleteUser(User user){
         userRepo.delete(user);
     }
-    public User updateUser(Long id, User user){
+    public User updateUser(Long id, User user){//Update user with new values
         User newUser = findUserByUserId(id);
         newUser.setUsername(user.getUsername());
         newUser.setFirstName(user.getFirstName());

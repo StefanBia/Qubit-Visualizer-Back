@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface BlochSphereRepo extends JpaRepository<BlochSphere, Long> {
-    Optional<BlochSphere> findBlochSphereByBlochSphereId(Long id);
+    Optional<BlochSphere> findBlochSphereByBlochSphereId(Long id);//Create JPA query for finding Bloch Sphere by ID
 }

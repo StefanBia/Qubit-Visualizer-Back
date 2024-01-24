@@ -15,7 +15,7 @@ public class WorkBenchService {
     @Autowired
     public WorkBenchService(WorkBenchRepo workBenchRepo) {
         this.workBenchRepo = workBenchRepo;
-    }
+    }//Create Workbench repository instance
 
     public List<WorkBench> getAllWorkBenches(){
         List<WorkBench> workBenches = workBenchRepo.findAll();

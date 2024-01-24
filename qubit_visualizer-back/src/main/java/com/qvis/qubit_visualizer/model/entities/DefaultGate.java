@@ -18,4 +18,12 @@ public abstract class DefaultGate implements Gate, Serializable {
     public void changeBlochSphere() {
 
     }
+
+    public Integer[][] getMatrix() {
+        return matrix;
+    }
+
+    public void setMatrix(Integer[][] matrix) {
+        this.matrix = matrix;
+    }
 }

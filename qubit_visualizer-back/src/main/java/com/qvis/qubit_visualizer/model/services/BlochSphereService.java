@@ -15,7 +15,7 @@ public class BlochSphereService {
     private final BlochSphereRepo blochSphereRepo;
 
     @Autowired
-    public BlochSphereService(BlochSphereRepo blochSphereRepo) {
+    public BlochSphereService(BlochSphereRepo blochSphereRepo) {//Create Bloch Sphere repository instance
         this.blochSphereRepo = blochSphereRepo;
     }
     public BlochSphere addBlochSphere(BlochSphere blochSphere){
