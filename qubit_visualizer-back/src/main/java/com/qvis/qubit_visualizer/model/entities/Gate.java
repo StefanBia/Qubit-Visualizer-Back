@@ -1,6 +1,6 @@
 package com.qvis.qubit_visualizer.model.entities;
 
 public interface Gate {
-    void changeState();
+    Integer[] changeState(Integer[] state);
     void changeBlochSphere();
 }

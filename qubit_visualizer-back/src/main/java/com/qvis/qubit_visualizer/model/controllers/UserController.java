@@ -1,5 +1,6 @@
 package com.qvis.qubit_visualizer.model.controllers;
 
+import com.qvis.qubit_visualizer.model.gates.PauliX;
 import com.qvis.qubit_visualizer.model.login.AuthCredentialsRequest;
 import com.qvis.qubit_visualizer.model.login.LoginResponse;
 import com.qvis.qubit_visualizer.model.entities.User;
@@ -91,5 +92,28 @@ public class UserController {
 
         return new ResponseEntity<>(response, response.getStatus());
     }
+
+    @PostMapping("/applyPauliX")
+    public ResponseEntity<Integer[]> applyPauliX(@RequestBody Integer[] state) {
+        try {
+            // Validate the input state
+            if (state.length != 2) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            // Create a PauliX gate instance
+            PauliX pauliX = new PauliX();
+
+            // Apply the gate to the input state
+            Integer[] resultState = pauliX.changeState(state);
+
+            // Return the result as a response
+            return new ResponseEntity<>(resultState, HttpStatus.OK);
+        } catch (Exception e) {
+            // Handle any unexpected errors
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }

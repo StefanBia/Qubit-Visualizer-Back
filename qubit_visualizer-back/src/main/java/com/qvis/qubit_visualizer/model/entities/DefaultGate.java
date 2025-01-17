@@ -10,8 +10,8 @@ public abstract class DefaultGate implements Gate, Serializable {
     };
 
     @Override
-    public void changeState() {
-
+    public Integer[] changeState(Integer[] state) {
+        return null;
     }
 
     @Override
